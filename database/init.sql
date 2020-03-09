@@ -32,11 +32,11 @@ CREATE TABLE "user" (
 CREATE TABLE "blocks" (
     "id" SERIAL PRIMARY KEY,
     "user_id" INT REFERENCES "user",
-    "color_id" BIGINT REFERENCES "colors"
+    "colors_id" BIGINT REFERENCES "colors"
 );
 
 CREATE TABLE "colors_user" (
     "id" SERIAL PRIMARY KEY,
     "user_id" INT REFERENCES "user",
-    "color_id" BIGINT REFERENCES "colors"
+    "colors_id" BIGINT REFERENCES "colors"
 );

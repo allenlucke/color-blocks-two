@@ -12,7 +12,17 @@ VALUES ('Red', 'ff0000'),
     ('Green', '00ff00');
         
 -- pre-load some blocks for initial render
-INSERT INTO "blocks" ("color_id", "user_id")
+INSERT INTO "blocks" ("colors_id", "user_id")
+VALUES (4, 1),
+    (3, 1),
+    (2, 1),
+    (1, 1),
+    (4, 2),
+    (3, 2),
+    (2, 2),
+    (1, 2);
+
+INSERT INTO "colors_user" ("colors_id", "user_id")
 VALUES (4, 1),
     (3, 1),
     (2, 1),
