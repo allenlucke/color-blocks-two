@@ -1,9 +1,9 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
-    /* background-image: url('./../../images/background1.jpeg'); */
-    background-color: #767676;
-    background-color: rgb(182 193 203);
+    background-image: url('./../../images/background1.jpeg');
+    /* background-color: #767676; */
+    /* background-color: rgb(182 193 203); */
     color: #1a262a;
 }
 
