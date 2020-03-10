@@ -193,3 +193,12 @@ input {
       border-top: 2px solid #1a262a;
       width: 60%;
     }
+
+    .container1 {
+      text-align: center;
+      width: 80%;
+      margin: 20px auto;
+      padding: 25px;
+      border-radius: 2px;
+      margin-bottom: ;
+    }

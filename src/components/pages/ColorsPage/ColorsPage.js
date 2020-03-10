@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 
+//Material UI
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+// import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
 class ColorsPage extends Component {
     state = {
         newColor: {
@@ -44,18 +54,21 @@ class ColorsPage extends Component {
         const colorList = this.props.store.getColorsReducer.map((item, index) => {
             const el = `#${item.hex_code}`
             return(
-                <tbody key={index}>
-                    <tr>
-                        <td>{item.label}</td>
-                        <td>{item.hex_code}</td>
-                        <td style= {{backgroundColor: el }} ></td>
-                        <td><button>Delete</button></td>
-                    </tr>
-                </tbody>
+                <TableBody key={index}>
+                    <TableRow>
+                        <TableCell>{item.label}</TableCell>
+                        <TableCell>{item.hex_code}</TableCell>
+                        <TableCell style= {{backgroundColor: el }} ></TableCell>
+                        <TableCell><Button
+                            variant='contained'
+                            color='secondary'
+                        >Delete</Button></TableCell>
+                    </TableRow>
+                </TableBody>
             )
         })
         return (
-            <div>
+            <div className="container1">
                 <h2>Add A Color</h2>
                 <form onSubmit={this.addNewColor}>
                     <input type='text' placeholder='Label' value={this.state.newColor.label}
@@ -65,17 +78,17 @@ class ColorsPage extends Component {
                     <input type='submit' value='Add New Color' />
                 </form>
                 <h2>Color Settings</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Label</th>
-                            <th>Hex Code</th>
-                            <th>Block</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Label</TableCell>
+                            <TableCell>Hex Code</TableCell>
+                            <TableCell>Block</TableCell>
+                            <TableCell>Delete</TableCell>
+                        </TableRow>
+                    </TableHead>
                         {colorList}
-                </table>
+                </Table>
             </div>
         )
     }
