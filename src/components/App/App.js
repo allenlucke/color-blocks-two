@@ -19,7 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import ColorsPage from '../pages/ColorsPage/ColorsPage'
+import ColorsPage from '../pages/ColorsPage/ColorsPage';
+import BlocksPage from '../pages/BlocksPage/BlocksPage';
 
 import './App.css';
 
@@ -68,6 +69,11 @@ class App extends Component {
                 exact
                 path="/colors"
                 component={ColorsPage}
+              />
+              <ProtectedRoute
+                exact
+                path="/blocks"
+                component={BlocksPage}
               />
               {/* This works the same as the other protected route, except that if the user is logged in,
               they will see the info page instead. */}
