@@ -5,13 +5,15 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 class ColorsPage extends Component {
     state = {
         newColor: {
+            userId: this.props.user.id,
             label: '',
             hex_code: '',
         }
     }
     componentDidMount() {
         this.props.dispatch({
-            type: 'GET_COLORS'
+            type: 'GET_COLORS',
+            payload: this.state.newColor.userId
         })
     }
     handleInputChange = (event, inputKey) => {
@@ -39,7 +41,7 @@ class ColorsPage extends Component {
             })
     }
     render() {
-        const colorList = this.props.reduxState.getColorsReducer.map((item, index) => {
+        const colorList = this.props.store.getColorsReducer.map((item, index) => {
             const el = `#${item.hex_code}`
             return(
                 <tbody key={index}>
