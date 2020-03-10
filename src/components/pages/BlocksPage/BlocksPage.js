@@ -19,10 +19,12 @@ import TableRow from '@material-ui/core/TableRow';
 class BlocksPage extends Component {
     componentDidMount() {
         this.props.dispatch({
-            type: 'GET_BLOCKS'
+            type: 'GET_BLOCKS',
+            payload: this.props.user.id
         })
         this.props.dispatch({
-            type: 'GET_COLORS'
+            type: 'GET_COLORS',
+            payload: this.props.user.id
         })
     }
     
@@ -33,6 +35,7 @@ class BlocksPage extends Component {
         })
         this.props.dispatch({
             type: 'GET_BLOCKS',
+            payload: this.props.user.id
         })
     }
     addBlock = (event, item) => {
@@ -42,6 +45,7 @@ class BlocksPage extends Component {
         })
         this.props.dispatch({
             type: 'GET_BLOCKS',
+            payload: this.props.user.id
         })
     }
 

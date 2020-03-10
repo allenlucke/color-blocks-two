@@ -4,7 +4,6 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* getColors(action) {
     console.log('In getSwatches');
     const userId = action.payload
-    console.log(userId)
     try {
         const response = yield axios({
             method: 'GET',

@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* getBlocks() {
+function* getBlocks(action) {
     console.log('In getSwatches');
+    const userId = action.payload
     try {
         const response = yield axios({
             method: 'GET',
-            url: '/api/blocks'
+            url: '/api/blocks/' + userId
         })
         yield put({
             type: 'SET_BLOCKS',

@@ -10,10 +10,10 @@ const router: express.Router = express.Router();
 router.get('/:userId', (req: Request, res: Response, next: express.NextFunction): void => {
     const userId: number | null = <number>parseInt(req.params.userId);
     console.log(userId)
-    const queryText: string = `SELECT "colors_user".id, "colors".label, "colors".hex_code FROM "colors"
-                                JOIN "colors_user" ON "colors".id = "colors_user".colors_id
-                                WHERE "colors_user".user_id = $1
-                                ORDER BY "colors".id ASC;`;
+    const queryText: string = `SELECT "blocks".id, "colors".label, "colors".hex_code FROM "blocks"
+                                JOIN "colors" ON "colors".id = "blocks".colors_id
+                                WHERE "blocks".user_id = $1
+                                ORDER BY "blocks".id ASC;`;
     pool.query(queryText, [userId])
     .then((response) => {
         res.send(response.rows)
