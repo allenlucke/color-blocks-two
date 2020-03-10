@@ -54,10 +54,10 @@ class ColorsPage extends Component {
         const colorList = this.props.store.getColorsReducer.map((item, index) => {
             const el = `#${item.hex_code}`
             return(
-                <TableBody key={index}>
-                    <TableRow>
-                        <TableCell>{item.label}</TableCell>
-                        <TableCell>{item.hex_code}</TableCell>
+                <TableBody hover className='table-row' key={index}>
+                    <TableRow hover>
+                        <TableCell style={{ color: 'whitesmoke', fontSize:'18px'}}>{item.label}</TableCell>
+                        <TableCell style={{ color: 'whitesmoke', fontSize: '18px' }}>{item.hex_code}</TableCell>
                         <TableCell style= {{backgroundColor: el }} ></TableCell>
                         <TableCell><Button
                             variant='contained'
@@ -80,11 +80,11 @@ class ColorsPage extends Component {
                 <h2>Color Settings</h2>
                 <Table>
                     <TableHead>
-                        <TableRow>
-                            <TableCell>Label</TableCell>
-                            <TableCell>Hex Code</TableCell>
-                            <TableCell>Block</TableCell>
-                            <TableCell>Delete</TableCell>
+                        <TableRow hover>
+                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Label</TableCell>
+                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px'  }}>Hex Code</TableCell>
+                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px'  }}>Block</TableCell>
+                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px'  }}>Delete</TableCell>
                         </TableRow>
                     </TableHead>
                         {colorList}
