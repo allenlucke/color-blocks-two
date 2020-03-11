@@ -2,16 +2,24 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* postBlocks(action) {
-    console.log('In getSwatches');
-    const userId = action.payload
+    console.log('In postBlocks');
+    const userId = action.payload.userId;
+    const colorsId= action.payload.colorsId;
+    // console.log(action.payload.userId);
+    // console.log(userId);
+    // console.log(colorsId);
     try {
         const response = yield axios({
             method: 'POST',
-            url: '/api/blocks/' + userId
+            url: '/api/blocks/post',
+            data: {
+                userId,
+                colorsId
+            }
         })
         yield put({
-            type: 'SET_BLOCKS',
-            payload: response.data
+            type: 'GET_BLOCKS',
+            payload: userId
         });
     } catch(err) {
         console.log('Error fetching color blocks', err);
