@@ -33,20 +33,20 @@ class BlocksPage extends Component {
             type: 'DELETE_BLOCK',
             payload: id
         })
-        this.props.dispatch({
-            type: 'GET_BLOCKS',
-            payload: this.props.user.id
-        })
+        // this.props.dispatch({
+        //     type: 'GET_BLOCKS',
+        //     payload: this.props.user.id
+        // })
     }
     addBlock = (event, item) => {
         this.props.dispatch({
-            type: 'ADD_BLOCK',
+            type: 'ADD_BLOCKS',
             payload: item
         })
-        this.props.dispatch({
-            type: 'GET_BLOCKS',
-            payload: this.props.user.id
-        })
+        // this.props.dispatch({
+        //     type: 'GET_BLOCKS',
+        //     payload: this.props.user.id
+        // })
     }
 
     render() {
@@ -58,7 +58,10 @@ class BlocksPage extends Component {
                     {block}
                     <h4 className="label">{item.label}</h4>
                     <div className="label">
-                        <button onClick={(event) =>this.deleteBlock(event, item.id)}>DELETE</button>
+                        <Button onClick={(event) =>this.deleteBlock(event, item.id)}
+                        variant='contained'
+                        color='secondary'
+                        >DELETE</Button>
                     </div>
                 </div>
             )
@@ -68,12 +71,12 @@ class BlocksPage extends Component {
             console.log(el)
             return(
                 <div key={index} className="swatchesBody">
-                    <button 
+                    <Button 
                         className="colorButton"
                         style= {{backgroundColor: el }}
                         onClick={(event) => this.addBlock(event, item)}>
                         Add a {item.label} Box
-                    </button>
+                    </Button>
                 </div>
             )
         })

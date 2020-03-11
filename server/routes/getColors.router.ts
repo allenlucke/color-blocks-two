@@ -7,7 +7,7 @@ const router: express.Router = express.Router();
 
 //GET Request colors by user
 //Order by due date ascending
-router.get('/:userId', (req: Request, res: Response, next: express.NextFunction): void => {
+router.get('/:userId', rejectUnauthenticated, (req: Request, res: Response, next: express.NextFunction): void => {
     const userId: number | null = <number>parseInt(req.params.userId);
     console.log(userId)
     const queryText: string = `SELECT "colors_user".id, "colors".label, "colors".hex_code FROM "colors"

@@ -4,6 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import getColorsSaga from './getColors.saga';
 import getBlocksSaga from './getBlocks.saga';
+import postBlocksSaga from './postBlocks.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -19,5 +20,6 @@ export default function* rootSaga() {
     userSaga(),
     getColorsSaga(),
     getBlocksSaga(),
+    postBlocksSaga(),
   ]);
 }
