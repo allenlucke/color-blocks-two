@@ -22,7 +22,7 @@ class ColorsPage extends Component {
         }
     }
     componentDidMount() {
-        console.log(chroma('red').hex());
+        // console.log(chroma('red').hex());
         this.props.dispatch({
             type: 'GET_COLORS',
             payload: this.state.newColor.userId
@@ -42,11 +42,12 @@ class ColorsPage extends Component {
             type: 'ADD_COLORS',
             payload: {
                 userId: this.state.newColor.userId,
-                label: this.state.newColor.label,
+                label: this.state.newColor.hex_code,
                 hex_code: chroma(this.state.newColor.hex_code).hex()
             } })
             this.setState({
                 newColor: {
+                    userId: this.state.newColor.userId,
                     label: '',
                     hex_code: '',
                 }
@@ -73,9 +74,13 @@ class ColorsPage extends Component {
             <div className="container1">
                 <h2>Add A Color</h2>
                 <form onSubmit={this.addNewColor}>
-                    <input type='text' placeholder='Label' value={this.state.newColor.label}
-                    onChange={(event) => this.handleInputChange(event, 'label')} />
-                    <input type='text' placeholder='Hex Code' value={this.state.newColor.hex_code}
+                    {/* <input type='text' placeholder='Label' value={this.state.newColor.label}
+                    onChange={(event) => this.handleInputChange(event, 'label')} /> */}
+                    <TextField type='text' value={this.state.newColor.hex_code}
+                    variant='outlined'
+                    type='text'
+                    label='Type Color'
+                    
                     onChange={(event) => this.handleInputChange(event, 'hex_code')} />
                     <input type='submit' value='Add New Color' />
                 </form>

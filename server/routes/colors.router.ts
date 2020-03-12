@@ -29,16 +29,28 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
     const userId: number | null = <number>parseInt(req.body.userId);
     const label: string | null = <string>req.body.label;
     const hex_code: string | null = <string>req.body.hex_code;
+    let colors_id: number | null;
     const queryText: string = `INSERT INTO "colors" ("label", "hex_code")
                                 VALUES ($1, $2)
                                 RETURNING id;`;
     pool.query(queryText, [label, hex_code])
-    .then((response) => {
-
-        res.send(response.rows)
+    .then((response1) => {
+        const colorsId = response1.rows.map((item, index) => {
+            return colors_id = <number>item.id;
+        })
+        const queryText: string = `INSERT INTO "colors_user" ("user_id", "colors_id")
+                                    VALUES ($1, $2);`;
+        pool.query(queryText, [userId, ...colorsId])
+        .then(response2 => {
+            res.sendStatus(201);
+        })                          
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        })
     })
     .catch((err) => {
-        console.log(`error getting tasks ${err}`)
+        console.log(`error posting color ${err}`)
         res.sendStatus(500);
     })
 });
