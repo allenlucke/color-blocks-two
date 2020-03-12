@@ -6,10 +6,10 @@ VALUES
 
 -- pre-load some colors
 INSERT INTO "colors" ("label", "hex_code")
-VALUES ('Red', 'ff0000'),
-    ('Yellow', 'ffff00'),
-    ('Blue', '0000ff'),
-    ('Green', '00ff00');
+VALUES ('Red', '#ff0000'),
+    ('Yellow', '#ffff00'),
+    ('Blue', '#0000ff'),
+    ('Green', '#00ff00');
         
 -- pre-load some blocks for initial render
 INSERT INTO "blocks" ("colors_id", "user_id")

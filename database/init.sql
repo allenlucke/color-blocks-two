@@ -9,7 +9,7 @@
 CREATE TABLE "colors" (
     "id" SERIAL PRIMARY KEY,
     "label" VARCHAR(80) NOT NULL,
-    "hex_code" VARCHAR(6)
+    "hex_code" VARCHAR(7)
 );
 
 CREATE TABLE "levels" (

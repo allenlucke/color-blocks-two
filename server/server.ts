@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import sessionMiddleware from './modules/session-middleware';
 import passport from './strategies/user.strategy';
 import userRouter from './routes/user.router';
-import getColorsRouter from './routes/getColors.router';
+import colorsRouter from './routes/colors.router';
 import blocksRouter from './routes/blocks.router';
 
 
@@ -24,7 +24,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/api/colors', getColorsRouter);
+app.use('/api/colors', colorsRouter);
 app.use('/api/blocks', blocksRouter);
 
 

@@ -39,26 +39,22 @@ class ColorsPage extends Component {
     addNewColor = (event, inputKey) => {
         event.preventDefault();
         this.props.dispatch({
-            type: 'ADD_COLOR',
+            type: 'ADD_COLORS',
             payload: {
-                userId: this.props.userId,
+                userId: this.state.newColor.userId,
                 label: this.state.newColor.label,
                 hex_code: chroma(this.state.newColor.hex_code).hex()
             } })
-            // console.log()
             this.setState({
                 newColor: {
                     label: '',
                     hex_code: '',
                 }
             })
-            this.props.dispatch({
-                type: 'GET_COLORS'
-            })
     }
     render() {
         const colorList = this.props.store.getColorsReducer.map((item, index) => {
-            const el = `#${item.hex_code}`
+            const el = `${item.hex_code}`
             return(
                 <TableBody hover className='table-row' key={index}>
                     <TableRow hover>
@@ -86,7 +82,7 @@ class ColorsPage extends Component {
                 <h2>Color Settings</h2>
                 <Table>
                     <TableHead>
-                        <TableRow hover>
+                        <TableRow >
                             <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Label</TableCell>
                             <TableCell style={{ color: 'whitesmoke', fontSize: '24px'  }}>Hex Code</TableCell>
                             <TableCell style={{ color: 'whitesmoke', fontSize: '24px'  }}>Block</TableCell>

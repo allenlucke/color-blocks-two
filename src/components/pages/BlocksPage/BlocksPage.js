@@ -33,10 +33,6 @@ class BlocksPage extends Component {
             type: 'DELETE_BLOCK',
             payload: id
         })
-        // this.props.dispatch({
-        //     type: 'GET_BLOCKS',
-        //     payload: this.props.user.id
-        // })
     }
     addBlock = (event, item) => {
         console.log(this.props.user.id);
@@ -49,15 +45,11 @@ class BlocksPage extends Component {
                 colorsId: item.id
             }
         })
-        // this.props.dispatch({
-        //     type: 'GET_BLOCKS',
-        //     payload: this.props.user.id
-        // })
     }
 
     render() {
         const colorBlocks = this.props.store.getBlocksReducer.map((item, index) => {
-            const el = `#${item.hex_code}`
+            const el = `${item.hex_code}`
             const block = <div style= {{backgroundColor: el }} className="box"></div>;
             return(
                 <div key={index} className="swatchesBody">
@@ -73,7 +65,7 @@ class BlocksPage extends Component {
             )
         })
         const colorButtons = this.props.store.getColorsReducer.map((item, index) => {
-            const el = `#${item.hex_code}`
+            const el = `${item.hex_code}`
             console.log(el)
             return(
                 <div key={index} className="swatchesBody">
