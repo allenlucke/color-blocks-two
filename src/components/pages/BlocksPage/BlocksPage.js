@@ -30,8 +30,11 @@ class BlocksPage extends Component {
     
     deleteBlock = (event, id) => {
         this.props.dispatch({
-            type: 'DELETE_BLOCK',
-            payload: id
+            type: 'PUT_BLOCKS',
+            payload: {
+                id: id,
+                userId: this.props.user.id,
+            }
         })
     }
     addBlock = (event, item) => {
@@ -39,8 +42,7 @@ class BlocksPage extends Component {
         console.log(item.id);
         console.log(item.colorsId)
         this.props.dispatch({
-            type: 'ADD_BLOCKS',
-            
+            type: 'ADD_BLOCKS',       
             payload: {
                 userId: this.props.user.id,
                 colorsId: item.colorsId

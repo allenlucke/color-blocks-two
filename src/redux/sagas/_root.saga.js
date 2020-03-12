@@ -6,6 +6,7 @@ import getColorsSaga from './getColors.saga';
 import getBlocksSaga from './getBlocks.saga';
 import postBlocksSaga from './postBlocks.saga';
 import postColorsSaga from './postColors.saga';
+import putBlocksSaga from './putBlocks.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     getBlocksSaga(),
     postBlocksSaga(),
     postColorsSaga(),
+    putBlocksSaga(),
   ]);
 }
