@@ -19,6 +19,7 @@
     "axios": "^0.18.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
+    "chroma-js": "^2.1.0",
     "cookie-session": "^2.0.0-beta.3",
     "currency": "^4.1.0",
     "dotenv": "^4.0.0",

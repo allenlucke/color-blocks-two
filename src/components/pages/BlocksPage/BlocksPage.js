@@ -89,7 +89,7 @@ class BlocksPage extends Component {
         return (
             <div className="container1">
                 {colorButtons}
-                <h2>Color Swatches</h2>
+                <h2>Color Blocks</h2>
                 {colorBlocks}
             </div>
         )

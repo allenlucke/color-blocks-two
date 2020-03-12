@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
+import chroma from 'chroma-js';
 
 //Material UI
 import Table from '@material-ui/core/Table';
@@ -21,6 +22,7 @@ class ColorsPage extends Component {
         }
     }
     componentDidMount() {
+        console.log(chroma('red').hex());
         this.props.dispatch({
             type: 'GET_COLORS',
             payload: this.state.newColor.userId
@@ -38,8 +40,12 @@ class ColorsPage extends Component {
         event.preventDefault();
         this.props.dispatch({
             type: 'ADD_COLOR',
-            payload: this.state.newColor })
-            console.log()
+            payload: {
+                userId: this.props.userId,
+                label: this.state.newColor.label,
+                hex_code: chroma(this.state.newColor.hex_code).hex()
+            } })
+            // console.log()
             this.setState({
                 newColor: {
                     label: '',
