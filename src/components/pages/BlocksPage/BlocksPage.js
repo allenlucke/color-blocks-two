@@ -37,12 +37,13 @@ class BlocksPage extends Component {
     addBlock = (event, item) => {
         console.log(this.props.user.id);
         console.log(item.id);
+        console.log(item.colorsId)
         this.props.dispatch({
             type: 'ADD_BLOCKS',
             
             payload: {
                 userId: this.props.user.id,
-                colorsId: item.id
+                colorsId: item.colorsId
             }
         })
     }

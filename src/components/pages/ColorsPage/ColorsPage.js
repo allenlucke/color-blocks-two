@@ -80,9 +80,11 @@ class ColorsPage extends Component {
                     variant='outlined'
                     type='text'
                     label='Type Color'
-                    
                     onChange={(event) => this.handleInputChange(event, 'hex_code')} />
-                    <input type='submit' value='Add New Color' />
+                    <Button type='submit' value='Add New Color' 
+                    variant='contained'
+                    color='primary'
+                    >Add Color</Button>
                 </form>
                 <h2>Color Settings</h2>
                 <Table>
