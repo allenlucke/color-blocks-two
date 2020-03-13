@@ -55,6 +55,16 @@ class ColorsPage extends Component {
                 }
             })
     }
+    deleteColor = (event, id) => {
+        event.preventDefault();
+        this.props.dispatch({
+            type: 'PUT_COLORS',
+            payload: {
+                colorsUserId: id,
+                userId: this.props.user.id               
+            }
+        })
+    }
     render() {
         const colorList = this.props.store.getColorsReducer.map((item, index) => {
             const el = `${item.hex_code}`
@@ -67,6 +77,7 @@ class ColorsPage extends Component {
                         <TableCell><Button
                             variant='contained'
                             color='secondary'
+                            onClick={(event) => this.deleteColor(event, item.id)}
                         >Delete</Button></TableCell>
                     </TableRow>
                 </TableBody>
@@ -94,9 +105,9 @@ class ColorsPage extends Component {
                     <TableHead>
                         <TableRow >
                             <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Label</TableCell>
-                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px'  }}>Hex Code</TableCell>
-                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px'  }}>Block</TableCell>
-                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px'  }}>Delete</TableCell>
+                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Hex Code</TableCell>
+                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Block</TableCell>
+                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Delete</TableCell>
                         </TableRow>
                     </TableHead>
                         {colorList}

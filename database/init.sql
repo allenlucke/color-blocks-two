@@ -39,5 +39,6 @@ CREATE TABLE "blocks" (
 CREATE TABLE "colors_user" (
     "id" SERIAL PRIMARY KEY,
     "user_id" INT REFERENCES "user",
-    "colors_id" BIGINT REFERENCES "colors"
+    "colors_id" BIGINT REFERENCES "colors",
+    "deleted" BOOLEAN default FALSE
 );
