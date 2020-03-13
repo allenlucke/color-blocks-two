@@ -10,7 +10,8 @@ router.get('/:userId', rejectUnauthenticated, (req: Request, res: Response, next
     const userId: number | null = <number>parseInt(req.params.userId);
     const queryText: string = `SELECT "colors_user".id, "colors".id AS "colorsId", "colors".label, "colors".hex_code FROM "colors"
                                 JOIN "colors_user" ON "colors".id = "colors_user".colors_id
-                                WHERE "colors_user".user_id = $1;`;
+                                WHERE "colors_user".user_id = $1
+                                AND "colors_user".deleted = FALSE;`;
     pool.query(queryText, [userId])
     .then((response) => {
         res.send(response.rows)
