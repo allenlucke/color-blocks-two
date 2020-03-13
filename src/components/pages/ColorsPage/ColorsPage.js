@@ -13,6 +13,8 @@ import Button from '@material-ui/core/Button';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
+import './ColorsPage.css';
+
 class ColorsPage extends Component {
     state = {
         newColor: {
@@ -84,6 +86,7 @@ class ColorsPage extends Component {
                     <Button type='submit' value='Add New Color' 
                     variant='contained'
                     color='primary'
+                    style={{ marginLeft: '20px', height: '55px', flex: '1' }}
                     >Add Color</Button>
                 </form>
                 <h2>Color Settings</h2>

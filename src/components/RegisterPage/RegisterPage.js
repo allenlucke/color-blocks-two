@@ -30,7 +30,6 @@ class RegisterPage extends Component {
   } // end registerUser
 
   handleInputChangeFor = propertyName => (event) => {
-    console.log(`hi`)
     this.setState({
       [propertyName]: event.target.value,
     });
@@ -100,7 +99,7 @@ class RegisterPage extends Component {
             variant="contained"
             color="primary"
             // className="link-button"
-            style={{marginTop: '130px', marginLeft: '20px'}}
+            style={{marginTop: '130px', marginRight: '55px'}}
             onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
           >
             Login
