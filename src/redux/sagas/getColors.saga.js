@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* getColors(action) {
-    console.log('In getSwatches');
+    console.log('In getColors');
     const userId = action.payload
     try {
         const response = yield axios({

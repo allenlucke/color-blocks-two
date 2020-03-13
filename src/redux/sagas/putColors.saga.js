@@ -4,13 +4,13 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* putColors(action) {
     console.log('In putColors');
     const userId = action.payload.userId;
-    const id = action.payload.id;
+    const colors_userId = action.payload.colors_userId;
     try {
         const response = yield axios({
             method: 'PUT',
             url: '/api/colors/put',
             data: {
-                id,
+                colors_userId,
             }
         })
         yield put({

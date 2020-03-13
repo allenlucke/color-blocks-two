@@ -60,7 +60,7 @@ class ColorsPage extends Component {
         this.props.dispatch({
             type: 'PUT_COLORS',
             payload: {
-                colorsUserId: id,
+                colors_userId: id,
                 userId: this.props.user.id               
             }
         })

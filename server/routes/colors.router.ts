@@ -51,5 +51,20 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
         res.sendStatus(500);
     })
 });
+//PUT route to mark colors_user.id as deleted
+router.put('/put', rejectUnauthenticated, (req: Request, res: Response, next: express.NextFunction): void => {
+    const id: number | null =<number>req.body.colors_userId;
+    const queryText: string = `UPDATE "colors_user"
+                                SET "deleted"= TRUE
+                                WHERE "id" = $1;`;
+    pool.query(queryText, [id])
+    .then((response) => {
+        res.sendStatus(201)
+    })
+    .catch((err) => {
+        console.log(`error marking color as deleted ${err}`)
+        res.sendStatus(500);
+    })
+})
 
 export default router;
