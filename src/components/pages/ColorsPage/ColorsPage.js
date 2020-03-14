@@ -77,11 +77,27 @@ class ColorsPage extends Component {
     }
     deleteColor = (event, id) => {
         event.preventDefault();
-        this.props.dispatch({
-            type: 'PUT_COLORS',
-            payload: {
-                colors_userId: id,
-                userId: this.props.user.id               
+        Swal.fire({
+            title: 'Delete Color',
+            text: 'Are you sure you want to delete this color?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete It!'
+        }).then(result => {
+            if(result.value) {
+                Swal.fire(
+                    'Deleted',
+                    'Your color has been deleted!',
+                );
+                this.props.dispatch({
+                    type: 'PUT_COLORS',
+                    payload: {
+                        colors_userId: id,
+                        userId: this.props.user.id               
+                    }
+                })
             }
         })
     }

@@ -4,7 +4,8 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 //Style
 import './BlocksPage.css'
-
+//Sweet Alerts
+import Swal from 'sweetalert2';
 //Material UI
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -29,18 +30,32 @@ class BlocksPage extends Component {
     }
     
     deleteBlock = (event, id) => {
-        this.props.dispatch({
-            type: 'PUT_BLOCKS',
-            payload: {
-                id: id,
-                userId: this.props.user.id,
+        Swal.fire({
+            title: 'Delete Block',
+            text: 'Are you sure you want to delete this block?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete It!'
+        }).then(result => {
+            if(result.value) {
+                Swal.fire(
+                    'Deleted',
+                    'Your block has been deleted!',
+                );
+                this.props.dispatch({
+                    type: 'PUT_BLOCKS',
+                    payload: {
+                        id: id,
+                        userId: this.props.user.id,
+                    }
+                })
             }
         })
     }
+
     addBlock = (event, item) => {
-        console.log(this.props.user.id);
-        console.log(item.id);
-        console.log(item.colorsId)
         this.props.dispatch({
             type: 'ADD_BLOCKS',       
             payload: {
@@ -62,6 +77,7 @@ class BlocksPage extends Component {
                         <Button onClick={(event) =>this.deleteBlock(event, item.id)}
                         variant='contained'
                         color='secondary'
+                        style= {{marginBottom: '40px' }}
                         >DELETE</Button>
                     </div>
                 </div>
@@ -75,7 +91,8 @@ class BlocksPage extends Component {
                     <Button 
                         className="colorButton"
                         style= {{backgroundColor: el, marginBottom: '15px' }}
-                        onClick={(event) => this.addBlock(event, item)}>
+                        onClick={(event) => this.addBlock(event, item)}
+                        variant='contained'>
                         Add a {item.label} Box
                     </Button>
                 </div>

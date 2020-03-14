@@ -35,21 +35,6 @@
     float: left;
 }
 
-.red{
-    background-color: #ff0000;
-}
-
-.yellow{
-    background-color: #ffff00;
-}
-
-.green{
-    background-color: #00ff00;
-}
-
-.blue{
-    background-color: #0000ff;
-}
 .label{
     text-align: center;
 }
