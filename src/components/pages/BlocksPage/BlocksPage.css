@@ -14,7 +14,16 @@
     margin-top: 5px;
     margin-bottom: 5px;
     float: left;
+    -ms-transition: 0.4s ease-in-out;
+    -webkit-transition: 0.4s ease-in-out;
+    transition: 1.8s ease-in-out;
 
+}
+
+.box:hover {
+    -ms-transform: rotate(15deg); /* IE 9 */
+    -webkit-transform: rotate(15deg); /* Chrome, Safari, Opera */
+    transform: rotate(1800deg);
 }
 .colorButton{
     width: 100%;

@@ -74,7 +74,7 @@ class BlocksPage extends Component {
                 <div key={index} className="swatchesBody">
                     <Button 
                         className="colorButton"
-                        style= {{backgroundColor: el }}
+                        style= {{backgroundColor: el, marginBottom: '15px' }}
                         onClick={(event) => this.addBlock(event, item)}>
                         Add a {item.label} Box
                     </Button>
