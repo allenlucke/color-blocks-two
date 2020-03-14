@@ -39,6 +39,8 @@ class ColorsPage extends Component {
         });
     }
     addNewColor = (event, inputKey) => {
+        if (chroma.valid(this.state.newColor.hex_code) == true ) {
+        // console.log(chroma(this.state.newColor.hex_code).hex())
         event.preventDefault();
         this.props.dispatch({
             type: 'ADD_COLORS',
@@ -53,7 +55,7 @@ class ColorsPage extends Component {
                     label: '',
                     hex_code: '',
                 }
-            })
+            })}
     }
     deleteColor = (event, id) => {
         event.preventDefault();
