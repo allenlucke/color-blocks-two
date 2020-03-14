@@ -46,7 +46,7 @@ class ColorsPage extends Component {
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Your color has been Added!',
+                title: `Success, ${this.state.newColor.hex_code} has been added!`,
                 showConfirmButton: false,
                 timer: 1500
             }).then(() => {

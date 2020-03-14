@@ -56,13 +56,22 @@ class BlocksPage extends Component {
     }
 
     addBlock = (event, item) => {
-        this.props.dispatch({
-            type: 'ADD_BLOCKS',       
-            payload: {
-                userId: this.props.user.id,
-                colorsId: item.colorsId
-            }
-        })
+        Swal.fire({
+            position: 'center',
+                icon: 'success',
+                title: `A ${item.label} block has been Added!`,
+                text: `Ooh, I like ${item.label}!!!`,
+                showConfirmButton: false,
+                timer: 1500
+        }).then(() => {
+            this.props.dispatch({
+                type: 'ADD_BLOCKS',       
+                payload: {
+                    userId: this.props.user.id,
+                    colorsId: item.colorsId
+                }
+            })
+        })      
     }
 
     render() {
