@@ -9,9 +9,12 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Modal from '@material-ui/core/Modal';
 // import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+//Sweet Alerts
+import Swal from 'sweetalert2';
 
 import './ColorsPage.css';
 
@@ -24,7 +27,6 @@ class ColorsPage extends Component {
         }
     }
     componentDidMount() {
-        // console.log(chroma('red').hex());
         this.props.dispatch({
             type: 'GET_COLORS',
             payload: this.state.newColor.userId
@@ -40,22 +42,38 @@ class ColorsPage extends Component {
     }
     addNewColor = (event, inputKey) => {
         if (chroma.valid(this.state.newColor.hex_code) == true ) {
-        // console.log(chroma(this.state.newColor.hex_code).hex())
-        event.preventDefault();
-        this.props.dispatch({
-            type: 'ADD_COLORS',
-            payload: {
-                userId: this.state.newColor.userId,
-                label: this.state.newColor.hex_code,
-                hex_code: chroma(this.state.newColor.hex_code).hex()
-            } })
-            this.setState({
-                newColor: {
-                    userId: this.state.newColor.userId,
-                    label: '',
-                    hex_code: '',
-                }
+            event.preventDefault();
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Your color has been Added!',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                this.props.dispatch({
+                    type: 'ADD_COLORS',
+                    payload: {
+                        userId: this.state.newColor.userId,
+                        label: this.state.newColor.hex_code,
+                        hex_code: chroma(this.state.newColor.hex_code).hex()
+                    } })
+                    this.setState({
+                        newColor: {
+                            userId: this.state.newColor.userId,
+                            label: '',
+                            hex_code: '',
+                        }
+                    })
             })}
+            else{
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Oh No! We do not recognize that color, sorry.',
+                    text: `Please try another color, or choose another input option.`,
+                    timer: 2500
+                })
+            }
     }
     deleteColor = (event, id) => {
         event.preventDefault();
