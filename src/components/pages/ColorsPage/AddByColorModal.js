@@ -16,7 +16,7 @@ import TableRow from '@material-ui/core/TableRow';
 //Sweet Alerts
 import Swal from 'sweetalert2';
 
-import './ColorsPage.css';
+import './AddByColorModal.css';
 
 class AddByColorModal extends Component {
     state = {
@@ -48,8 +48,10 @@ class AddByColorModal extends Component {
         });
     }
     addNewColor = (event, inputKey) => {
+        // this.closeModal();
         if (chroma.valid(this.state.newColor.hex_code) == true ) {
             event.preventDefault();
+            this.closeModal();
             Swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -73,6 +75,7 @@ class AddByColorModal extends Component {
                     })
             })}
             else{
+                this.closeModal();
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
@@ -91,15 +94,29 @@ class AddByColorModal extends Component {
                         color="primary"
                         onClick={this.openModal}
                     >
-                        Open Modal
+                        Add A Color By Name
                     </Button>
                 </div>
                 <div>
                     <Modal
+                        height="100%"
+                        width="100%"
                         open={this.state.setOpen}
                         onClose={this.closeModal}>
-                        <div className="modalPrime">
+                        <div className="addByColorModal">
                             <h2>Modal</h2>
+                            <form onSubmit={this.addNewColor}>
+                                <TextField type='text' value={this.state.newColor.hex_code}
+                                variant='outlined'
+                                type='text'
+                                label='Type Color'
+                                onChange={(event) => this.handleInputChange(event, 'hex_code')} />
+                                <Button type='submit' value='Add New Color' 
+                                variant='contained'
+                                color='primary'
+                                style={{ marginLeft: '20px', height: '55px', flex: '1' }}
+                                >Add Color</Button>
+                            </form>
                         </div>
                     </Modal>
                 </div>
