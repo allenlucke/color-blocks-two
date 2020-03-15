@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import chroma from 'chroma-js';
+import AddByColorModal from './AddByColorModal'
 
 //Material UI
 import Table from '@material-ui/core/Table';
@@ -122,6 +123,7 @@ class ColorsPage extends Component {
         return (
             <div className="container1">
                 <h2>Add A Color</h2>
+                <AddByColorModal/>
                 <form onSubmit={this.addNewColor}>
                     {/* <input type='text' placeholder='Label' value={this.state.newColor.label}
                     onChange={(event) => this.handleInputChange(event, 'label')} /> */}
