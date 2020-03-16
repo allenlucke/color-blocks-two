@@ -42,3 +42,9 @@ CREATE TABLE "colors_user" (
     "colors_id" BIGINT REFERENCES "colors",
     "deleted" BOOLEAN default FALSE
 );
+
+CREATE TABLE "achievements" (
+    "id" SERIAL PRIMARY KEY, 
+    "achievement" VARCHAR (120) UNIQUE NOT NULL,
+    "points" INT default 0
+)

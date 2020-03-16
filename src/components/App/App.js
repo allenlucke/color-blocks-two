@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ColorsPage from '../pages/ColorsPage/ColorsPage';
 import BlocksPage from '../pages/BlocksPage/BlocksPage';
+import AdminPage from '../Admin/AdminPage';
 
 import './App.css';
 
@@ -65,6 +66,11 @@ class App extends Component {
               Visiting localhost:3000/user will show the UserPage if the user is logged in.
               If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
               Even though it seems like they are different pages, the user is always on localhost:3000/user */}
+              <ProtectedRoute
+                exact
+                path="/admin"
+                component={AdminPage}
+              />
               <ProtectedRoute
                 exact
                 path="/colors"

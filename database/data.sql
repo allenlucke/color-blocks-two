@@ -31,3 +31,23 @@ VALUES (1, 1),
     (2, 2),
     (3, 2),
     (4, 2);
+
+--preload some levels
+INSERT INTO "levels" ("qualifier")
+VALUES (100),
+        (200),
+        (300),
+        (400),
+        (500),
+        (750),
+        (1000),
+        (2000),
+        (3000),
+        (4000),
+        (5000);
+
+--preload some achievements
+INSERT INTO "achievements" ("achievement", "points")
+VALUES ('Add color by name', 10),
+        ('Add color by hex code', 20),
+        ('Add color by combination', 30);
