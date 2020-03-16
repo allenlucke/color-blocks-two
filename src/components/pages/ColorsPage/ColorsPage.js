@@ -33,49 +33,6 @@ class ColorsPage extends Component {
             payload: this.state.newColor.userId
         })
     }
-    handleInputChange = (event, inputKey) => {
-        this.setState({
-            newColor: {
-                ...this.state.newColor,
-                [inputKey]: event.target.value
-            }
-        });
-    }
-    addNewColor = (event, inputKey) => {
-        if (chroma.valid(this.state.newColor.hex_code) == true ) {
-            event.preventDefault();
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: `Success, ${this.state.newColor.hex_code} has been added!`,
-                showConfirmButton: false,
-                timer: 1500
-            }).then(() => {
-                this.props.dispatch({
-                    type: 'ADD_COLORS',
-                    payload: {
-                        userId: this.state.newColor.userId,
-                        label: this.state.newColor.hex_code,
-                        hex_code: chroma(this.state.newColor.hex_code).hex()
-                    } })
-                    this.setState({
-                        newColor: {
-                            userId: this.state.newColor.userId,
-                            label: '',
-                            hex_code: '',
-                        }
-                    })
-            })}
-            else{
-                Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: 'Oh No! We do not recognize that color, sorry.',
-                    text: `Please try another color, or choose another input option.`,
-                    timer: 2500
-                })
-            }
-    }
     deleteColor = (event, id) => {
         event.preventDefault();
         Swal.fire({
@@ -123,21 +80,7 @@ class ColorsPage extends Component {
         return (
             <div className="container1">
                 <h2>Add A Color</h2>
-                <AddByColorModal/>
-                <form onSubmit={this.addNewColor}>
-                    {/* <input type='text' placeholder='Label' value={this.state.newColor.label}
-                    onChange={(event) => this.handleInputChange(event, 'label')} /> */}
-                    <TextField type='text' value={this.state.newColor.hex_code}
-                    variant='outlined'
-                    type='text'
-                    label='Type Color'
-                    onChange={(event) => this.handleInputChange(event, 'hex_code')} />
-                    <Button type='submit' value='Add New Color' 
-                    variant='contained'
-                    color='primary'
-                    style={{ marginLeft: '20px', height: '55px', flex: '1' }}
-                    >Add Color</Button>
-                </form>
+                <AddByColorModal className='modalBtn'/>
                 <h2>Color Settings</h2>
                 <Table>
                     <TableHead>

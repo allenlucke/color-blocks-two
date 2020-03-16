@@ -181,30 +181,30 @@ input {
     padding: 5px;
   }
   
-  .add-event-header {
-      position: relative;
-      margin: 0;
-      padding: 25px 20px 25px;
-      font-size: 2rem;
-      color: #1a262a;
+.add-event-header {
+    position: relative;
+    margin: 0;
+    padding: 25px 20px 25px;
+    font-size: 2rem;
+    color: #1a262a;
+  
+}
     
-  }
-    
-  .add-event-header:before {
-      content: " ";
-      position: absolute;
-      bottom: 0;
-      border-top: 2px solid #1a262a;
-      width: 60%;
-    }
+.add-event-header:before {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    border-top: 2px solid #1a262a;
+    width: 60%;
+}
 
-    .container1 {
-      text-align: center;
-      width: 80%;
-      margin: 20px auto;
-      padding: 25px;
-      border-radius: 2px;
-      color: whitesmoke;
-    }
+.container1 {
+  text-align: center;
+  width: 80%;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 2px;
+  color: whitesmoke;
+}
 
 
