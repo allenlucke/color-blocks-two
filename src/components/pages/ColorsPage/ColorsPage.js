@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import chroma from 'chroma-js';
-import AddByColorModal from './AddByColorModal'
+import AddByColorModal from './AddByColorModal';
+import AddByHexModal from './AddByHexModal'
 
 //Material UI
 import Table from '@material-ui/core/Table';
@@ -18,6 +19,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Swal from 'sweetalert2';
 
 import './ColorsPage.css';
+import { ButtonGroup } from '@material-ui/core';
 
 class ColorsPage extends Component {
     state = {
@@ -63,12 +65,12 @@ class ColorsPage extends Component {
         const colorList = this.props.store.getColorsReducer.map((item, index) => {
             const el = `${item.hex_code}`
             return(
-                <TableBody hover className='table-row' key={index}>
+                <TableBody className='table-row' key={index} >
                     <TableRow hover>
                         <TableCell style={{ color: 'whitesmoke', fontSize:'18px'}}>{item.label}</TableCell>
                         <TableCell style={{ color: 'whitesmoke', fontSize: '18px' }}>{item.hex_code}</TableCell>
                         <TableCell style= {{backgroundColor: el }} ></TableCell>
-                        <TableCell><Button
+                        <TableCell style={{width: '10rem'}}><Button
                             variant='contained'
                             color='secondary'
                             onClick={(event) => this.deleteColor(event, item.id)}
@@ -79,8 +81,13 @@ class ColorsPage extends Component {
         })
         return (
             <div className="container1">
-                <h2>Add A Color</h2>
-                <AddByColorModal className='modalBtn'/>
+                <div>
+                    <h2 >Add A Color</h2>
+                    <ButtonGroup>
+                        <AddByColorModal />
+                        <AddByHexModal />
+                    </ButtonGroup>
+                    </div>
                 <h2>Color Settings</h2>
                 <Table>
                     <TableHead>

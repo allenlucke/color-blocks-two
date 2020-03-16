@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 
 import './ColorsPage.css';
 
-class AddByColorModal extends Component {
+class AddByHexModal extends Component {
     state = {
         setOpen: false,
         newColor: {
@@ -57,7 +57,7 @@ class AddByColorModal extends Component {
                     type: 'ADD_COLORS',
                     payload: {
                         userId: this.state.newColor.userId,
-                        label: this.state.newColor.hex_code,
+                        label: this.state.newColor.label,
                         hex_code: chroma(this.state.newColor.hex_code).hex()
                     } })
                     this.setState({
@@ -88,7 +88,7 @@ class AddByColorModal extends Component {
                         color="primary"
                         onClick={this.openModal}
                     >
-                        Add A Color By Name
+                        Add A Color By Hex Code
                     </Button>
                 </div>
                 <div>
@@ -98,7 +98,7 @@ class AddByColorModal extends Component {
                         open={this.state.setOpen}
                         onClose={this.closeModal}>
                         <div className="addByColorModal">
-                            <h2 className='modalHdr'>Add your color by name</h2>
+                            <h2 className='modalHdr'>Add your color by it's hex code</h2>
                             <form onSubmit={this.addNewColor}>
                                 <TextField type='text' value={this.state.newColor.hex_code}
                                 variant='outlined'
@@ -118,4 +118,4 @@ class AddByColorModal extends Component {
         );
     }
 }
-export default connect(mapStoreToProps)(AddByColorModal);
+export default connect(mapStoreToProps)(AddByHexModal);

@@ -7,14 +7,8 @@ import './BlocksPage.css'
 //Sweet Alerts
 import Swal from 'sweetalert2';
 //Material UI
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-// import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+
 
 
 class BlocksPage extends Component {

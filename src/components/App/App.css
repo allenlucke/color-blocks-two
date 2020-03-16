@@ -1,13 +1,14 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
-    background-image: url('./../../images/background1.jpeg');
+    /* background-image: url('./../../images/background1.jpeg'); */
     /* background-image: url('./../../images/paint-background.jpg'); */
     /* background-image: url('./../../images/background2.jpeg'); */
     /* background-image: url('./../../images/theMatrix.jpg'); */
     /* background-image: url('./../../images/brickWall.jpg'); */
     /* background-image: url('./../../images/lukeMa.png'); */
     /* background-color: #000; */
+    background-image: url('./../../images/background1copy.psd');
     color: whitesmoke;
 }
 
