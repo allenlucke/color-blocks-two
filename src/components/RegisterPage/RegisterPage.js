@@ -38,13 +38,7 @@ class RegisterPage extends Component {
   render() {
     return (
       <div>
-        {this.props.errors.registrationMessage && (
-          <h2
-            className="alert" role="alert"
-          >
-            {this.props.errors.registrationMessage}
-          </h2>
-        )}
+        {this.props.errors.registrationMessage}
         <form onSubmit={this.registerUser}
               className="loginForm">
           <Paper

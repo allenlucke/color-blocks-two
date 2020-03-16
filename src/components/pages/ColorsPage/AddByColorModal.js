@@ -98,12 +98,12 @@ class AddByColorModal extends Component {
                         open={this.state.setOpen}
                         onClose={this.closeModal}>
                         <div className="addByColorModal">
-                            <h2>Modal</h2>
+                            <h2 className='modalHdr'>Modal</h2>
                             <form onSubmit={this.addNewColor}>
                                 <TextField type='text' value={this.state.newColor.hex_code}
                                 variant='outlined'
                                 type='text'
-                                label='Type Color'
+                                label='Name of Color'
                                 onChange={(event) => this.handleInputChange(event, 'hex_code')} />
                                 <Button type='submit' value='Add New Color' 
                                 variant='contained'

@@ -85,10 +85,10 @@ class ColorsPage extends Component {
                 <Table>
                     <TableHead>
                         <TableRow >
-                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Label</TableCell>
+                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Color Name</TableCell>
                             <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Hex Code</TableCell>
-                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Block</TableCell>
-                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Delete</TableCell>
+                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Color Image</TableCell>
+                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Delete Color</TableCell>
                         </TableRow>
                     </TableHead>
                         {colorList}
