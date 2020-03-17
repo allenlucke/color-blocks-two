@@ -3,8 +3,8 @@ import bodyParser from 'body-parser';
 import sessionMiddleware from './modules/session-middleware';
 import passport from './strategies/user.strategy';
 import userRouter from './routes/user.router';
-import colorsRouter from './routes/colors.router';
-import blocksRouter from './routes/blocks.router';
+import colorsRouter from './routes/ColorsRoutes/colors.router';
+import blocksRouter from './routes/BlocksRoutes/blocks.router';
 
 
 require('dotenv').config();

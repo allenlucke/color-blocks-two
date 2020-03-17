@@ -19,6 +19,7 @@ class AddByColorModal extends Component {
             userId: this.props.user.id,
             label: '',
             hex_code: '',
+            achievementsId: 1,
         }
     };
 
@@ -58,7 +59,8 @@ class AddByColorModal extends Component {
                     payload: {
                         userId: this.state.newColor.userId,
                         label: this.state.newColor.hex_code,
-                        hex_code: chroma(this.state.newColor.hex_code).hex()
+                        hex_code: chroma(this.state.newColor.hex_code).hex(),
+                        achievementsId: this.state.newColor.achievementsId,
                     } })
                     this.setState({
                         newColor: {

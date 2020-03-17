@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import express from 'express';
-import pool from '../modules/pool';
-import rejectUnauthenticated from '../modules/authentication-middleware';
+import pool from '../../modules/pool';
+import rejectUnauthenticated from '../../modules/authentication-middleware';
 
 const router: express.Router = express.Router();
 
@@ -22,12 +22,15 @@ router.get('/:userId', rejectUnauthenticated, (req: Request, res: Response, next
     })
 });
 
-//POST Request to add block by user
+//POST Request to add color by user
 router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: express.NextFunction): void => {
     const userId: number | null = <number>parseInt(req.body.userId);
     const label: string | null = <string>req.body.label;
     const hex_code: string | null = <string>req.body.hex_code;
     let colors_id: number | null;
+    const achievementsId: number | null = <number>req.body.achievementsId;
+    console.log(achievementsId);
+    //Posts the color to the colors table, returns id
     const queryText: string = `INSERT INTO "colors" ("label", "hex_code")
                                 VALUES ($1, $2)
                                 RETURNING id;`;
@@ -36,11 +39,26 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
         const colorsId = response1.rows.map((item, index) => {
             return colors_id = <number>item.id;
         })
+        //Posts to the colors_users table uses returned id to associate color with user
         const queryText: string = `INSERT INTO "colors_user" ("user_id", "colors_id")
                                     VALUES ($1, $2);`;
         pool.query(queryText, [userId, ...colorsId])
         .then(response2 => {
-            res.sendStatus(201);
+            //Get request for achievements points
+            const queryText = `SELECT "points" FROM "achievements"
+                                WHERE "id" = $1;`;
+            pool.query(queryText, [achievementsId])
+            .then((response3) => {
+                console.log(response3.rows)
+                console.log(response3.rows[0])
+                const points = response3.rows[0]
+                console.log(points)
+                res.sendStatus(201);
+            })
+            .catch(err => {
+                console.log(err);
+                res.sendStatus(500);
+            })
         })                          
         .catch(err => {
             console.log(err);
@@ -52,6 +70,14 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
         res.sendStatus(500);
     })
 });
+
+
+
+
+
+
+
+
 //PUT route to mark colors_user.id as deleted
 router.put('/put', rejectUnauthenticated, (req: Request, res: Response, next: express.NextFunction): void => {
     const id: number | null =<number>req.body.colors_userId;
