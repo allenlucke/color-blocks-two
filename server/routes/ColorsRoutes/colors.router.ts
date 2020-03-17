@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, response } from "express";
 import express from 'express';
 import pool from '../../modules/pool';
 import rejectUnauthenticated from '../../modules/authentication-middleware';
@@ -33,6 +33,7 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
     // let newPointsFromServer: number | null;
     // let currentUserLevel: number | null;
     // console.log(achievementsId);
+
     //Posts the color to the colors table, returns id
     console.log(userId);
     const queryText: string = `INSERT INTO "colors" ("label", "hex_code")
@@ -64,21 +65,45 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
                                     RETURNING "points", "user_levels";`;
                 pool.query(queryText, [...pointsToAdd, userId])
                 .then((response4) => {
-                    const newPointsTotal: number | null = response4.rows[0].points;
-                    const currentUserLevel: number | null = response4.rows[0].user_levels;
+                    const newPointsTotal: number = response4.rows[0].points;
+                    const currentUserLevel: number = response4.rows[0].user_levels;
                     console.log(newPointsTotal);
                     console.log(currentUserLevel);
-                    //
-                    const queryText = ``;
+                    //Gets an level ids and qualifiers
+                    const queryText = `SELECT * FROM "levels";`;
                     pool.query(queryText)
                     .then((response5) => {
-                        res.sendStatus(201);
+                        console.log(response5.rows)
+                        const levelQualifiers = response5.rows.map((item, index) => {
+                            return <number>item.qualifier;
+                        })
+                        console.log(levelQualifiers);
+                        // res.sendStatus(201);
+                        
+                        for(let i = 0; i < levelQualifiers.length; i++) {
+                            if(currentUserLevel >= levelQualifiers.length) {
+                                res.sendStatus(201);    
+                            } else if (newPointsTotal >= levelQualifiers[(i +1)] && currentUserLevel <= (i + 1) ){
+                                console.log(i);
+                                console.log(levelQualifiers[i])
+                                const queryText = `UPDATE "user"
+                                                    SET "user_levels" = "user_levels" + 1
+                                                    WHERE "id" = $1;`;
+                                pool.query(queryText, [userId])
+                                .then((response6) => {
+                                    res.sendStatus(201);
+                                })
+                                .catch((err) => {
+                                    res.sendStatus(500);
+                                    console.log(err)
+                                })
+                            }
+                        }
                     })
                     .catch((err) => {
                         res.sendStatus(500);
                         console.log(err)
                     })
-                    // res.sendStatus(201)
                 })
                 .catch(err => {
                     console.log(err);
