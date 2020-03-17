@@ -30,8 +30,11 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
     let colors_id: number | null;
     const achievementsId: number | null = <number>req.body.achievementsId;
     let pointsAwarded: number | null;
-    console.log(achievementsId);
+    // let newPointsFromServer: number | null;
+    // let currentUserLevel: number | null;
+    // console.log(achievementsId);
     //Posts the color to the colors table, returns id
+    console.log(userId);
     const queryText: string = `INSERT INTO "colors" ("label", "hex_code")
                                 VALUES ($1, $2)
                                 RETURNING id;`;
@@ -50,21 +53,32 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
                                 WHERE "id" = $1;`;
             pool.query(queryText, [achievementsId])
             .then((response3) => {
-                const points = response3.rows.map((item, index) => {
+                const pointsToAdd = response3.rows.map((item, index) => {
                     return pointsAwarded = <number>item.points;
                 })
-                // console.log(response3.rows)
-                // console.log(response3.rows[0])
-                // const points = response3.rows[0]
-                console.log(points)
+                console.log(pointsToAdd)
                 //PUT request to add points to user
                 const queryText = `UPDATE "user"
                                     SET "points" = "points" + $1
-                                    WHERE "id" = $2;`;
-                pool.query(queryText, [...points, userId])
-                // res.sendStatus(201);
+                                    WHERE "id" = $2
+                                    RETURNING "points", "user_levels";`;
+                pool.query(queryText, [...pointsToAdd, userId])
                 .then((response4) => {
-                    res.sendStatus(201)
+                    const newPointsTotal: number | null = response4.rows[0].points;
+                    const currentUserLevel: number | null = response4.rows[0].user_levels;
+                    console.log(newPointsTotal);
+                    console.log(currentUserLevel);
+                    //
+                    const queryText = ``;
+                    pool.query(queryText)
+                    .then((response5) => {
+                        res.sendStatus(201);
+                    })
+                    .catch((err) => {
+                        res.sendStatus(500);
+                        console.log(err)
+                    })
+                    // res.sendStatus(201)
                 })
                 .catch(err => {
                     console.log(err);

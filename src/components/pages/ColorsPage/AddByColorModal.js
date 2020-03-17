@@ -67,6 +67,7 @@ class AddByColorModal extends Component {
                             userId: this.state.newColor.userId,
                             label: '',
                             hex_code: '',
+                            achievementsId: 1,
                         }
                     })
             })}
