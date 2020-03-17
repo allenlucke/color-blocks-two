@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import ColorsPage from '../pages/ColorsPage/ColorsPage';
 import BlocksPage from '../pages/BlocksPage/BlocksPage';
 import AdminPage from '../Admin/AdminPage';
+import UserPage from '../UserPage/UserPage';
 
 import './App.css';
 
@@ -81,6 +82,11 @@ class App extends Component {
                 path="/blocks"
                 component={BlocksPage}
               />
+              {/* <ProtectedRoute
+                exact
+                path="/user"
+                component={UserPage}
+              /> */}
               {/* This works the same as the other protected route, except that if the user is logged in,
               they will see the info page instead. */}
               <ProtectedRoute

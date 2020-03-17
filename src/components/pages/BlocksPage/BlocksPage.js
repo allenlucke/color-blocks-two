@@ -88,7 +88,7 @@ class BlocksPage extends Component {
         })
         const colorButtons = this.props.store.getColorsReducer.map((item, index) => {
             const el = `${item.hex_code}`
-            console.log(el)
+            // console.log(el)
             return(
                 <div key={index} className="swatchesBody">
                     <Button 

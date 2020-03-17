@@ -43,7 +43,7 @@ class AddByColorModal extends Component {
     }
     addNewColor = (event, inputKey) => {
         // this.closeModal();
-        if (chroma.valid(this.state.newColor.hex_code) == true ) {
+        if (chroma.valid(this.state.newColor.hex_code) === true ) {
             event.preventDefault();
             this.closeModal();
             Swal.fire({

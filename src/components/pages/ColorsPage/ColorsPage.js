@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-// import chroma from 'chroma-js';
+import chroma from 'chroma-js';
 import AddByColorModal from './AddByColorModal';
 import AddByHexModal from './AddByHexModal'
 
@@ -9,10 +9,10 @@ import AddByHexModal from './AddByHexModal'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { ButtonGroup } from '@material-ui/core';
-import Modal from '@material-ui/core/Modal';
+// import Modal from '@material-ui/core/Modal';
 // import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
@@ -30,6 +30,7 @@ class ColorsPage extends Component {
         }
     }
     componentDidMount() {
+        console.log(chroma('ff0000').name())
         this.props.dispatch({
             type: 'GET_COLORS',
             payload: this.state.newColor.userId

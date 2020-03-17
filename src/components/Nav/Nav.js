@@ -37,12 +37,12 @@ const Nav = (props) => {
               Admin Page
               </Link>
             )}
-            <Link className="nav-link" to="/info">
+            {/* <Link className="nav-link" to="/info">
               Info Page
             </Link>
             <Link className="nav-link" to="/user">
               User Page
-            </Link>
+            </Link> */}
             <Link className="nav-link" to="/blocks">
               Blocks Page
             </Link>
