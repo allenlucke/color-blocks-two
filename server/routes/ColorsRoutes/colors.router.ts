@@ -29,6 +29,7 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
     const hex_code: string | null = <string>req.body.hex_code;
     let colors_id: number | null;
     const achievementsId: number | null = <number>req.body.achievementsId;
+    let pointsAwarded: number | null;
     console.log(achievementsId);
     //Posts the color to the colors table, returns id
     const queryText: string = `INSERT INTO "colors" ("label", "hex_code")
@@ -49,11 +50,26 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
                                 WHERE "id" = $1;`;
             pool.query(queryText, [achievementsId])
             .then((response3) => {
-                console.log(response3.rows)
-                console.log(response3.rows[0])
-                const points = response3.rows[0]
+                const points = response3.rows.map((item, index) => {
+                    return pointsAwarded = <number>item.points;
+                })
+                // console.log(response3.rows)
+                // console.log(response3.rows[0])
+                // const points = response3.rows[0]
                 console.log(points)
-                res.sendStatus(201);
+                //PUT request to add points to user
+                const queryText = `UPDATE "user"
+                                    SET "points" = "points" + $1
+                                    WHERE "id" = $2;`;
+                pool.query(queryText, [...points, userId])
+                // res.sendStatus(201);
+                .then((response4) => {
+                    res.sendStatus(201)
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.sendStatus(500);
+                })
             })
             .catch(err => {
                 console.log(err);
