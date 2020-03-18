@@ -35,7 +35,7 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
     // console.log(achievementsId);
 
     //Posts the color to the colors table, returns id
-    console.log(userId);
+    // console.log(userId);
     const queryText: string = `INSERT INTO "colors" ("label", "hex_code")
                                 VALUES ($1, $2)
                                 RETURNING id;`;
@@ -57,7 +57,7 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
                 const pointsToAdd = response3.rows.map((item, index) => {
                     return pointsAwarded = <number>item.points;
                 })
-                console.log(pointsToAdd)
+                // console.log(pointsToAdd)
                 //PUT request to add points to user
                 const queryText = `UPDATE "user"
                                     SET "points" = "points" + $1
@@ -67,25 +67,31 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
                 .then((response4) => {
                     const newPointsTotal: number = response4.rows[0].points;
                     const currentUserLevel: number = response4.rows[0].user_levels;
-                    console.log(newPointsTotal);
-                    console.log(currentUserLevel);
+                    // console.log(newPointsTotal);
+                    // console.log(currentUserLevel);
                     //Gets an level ids and qualifiers
                     const queryText = `SELECT * FROM "levels";`;
                     pool.query(queryText)
                     .then((response5) => {
-                        console.log(response5.rows)
+                        // console.log(response5.rows)
                         const levelQualifiers = response5.rows.map((item, index) => {
                             return <number>item.qualifier;
                         })
-                        console.log(levelQualifiers);
+                        const levelsId = response5.rows.map((item, index) => {
+                            return <number>item.id;
+                        })
+                        // console.log(levelQualifiers.length);
                         // res.sendStatus(201);
-                        
                         for(let i = 0; i < levelQualifiers.length; i++) {
                             if(currentUserLevel >= levelQualifiers.length) {
-                                res.sendStatus(201);    
-                            } else if (newPointsTotal >= levelQualifiers[(i +1)] && currentUserLevel <= (i + 1) ){
-                                console.log(i);
+                                res.sendStatus(201);   
+                            } else if (newPointsTotal > levelQualifiers[i]  ){
+                                console.log([i]);
+                                console.log(newPointsTotal)
                                 console.log(levelQualifiers[i])
+                                console.log(currentUserLevel)
+                                console.log(levelsId[i])
+                                // console.log(levelQualifiers[i])
                                 const queryText = `UPDATE "user"
                                                     SET "user_levels" = "user_levels" + 1
                                                     WHERE "id" = $1;`;
@@ -97,6 +103,8 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
                                     res.sendStatus(500);
                                     console.log(err)
                                 })
+                            } else {
+                                res.sendStatus(201);
                             }
                         }
                     })
@@ -126,6 +134,7 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
     })
 });
 
+// } if (newPointsTotal >= levelQualifiers[i]  ){
 
 
 
