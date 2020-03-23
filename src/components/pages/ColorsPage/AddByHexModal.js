@@ -19,6 +19,7 @@ class AddByHexModal extends Component {
             userId: this.props.user.id,
             label: '',
             hex_code: '',
+            achievementsId: 2,
         }
     };
 
@@ -58,13 +59,15 @@ class AddByHexModal extends Component {
                     payload: {
                         userId: this.state.newColor.userId,
                         label: this.state.newColor.label,
-                        hex_code: chroma(this.state.newColor.hex_code).hex()
+                        hex_code: chroma(this.state.newColor.hex_code).hex(),
+                        achievementsId: this.state.newColor.achievementsId,
                     } })
                     this.setState({
                         newColor: {
                             userId: this.state.newColor.userId,
                             label: '',
                             hex_code: '',
+                            achievementsId: 2,
                         }
                     })
             })}
