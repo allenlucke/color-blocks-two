@@ -30,11 +30,8 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
     let colors_id: number | null;
     const achievementsId: number | null = <number>req.body.achievementsId;
     let pointsAwarded: number | null;
-    // let newPointsFromServer: number | null;
-    // let currentUserLevel: number | null;
-    // console.log(achievementsId);
 
-    //Posts the color to the colors table, returns id
+     //Posts the color to the colors table, returns id
     // console.log(userId);
     const queryText: string = `INSERT INTO "colors" ("label", "hex_code")
                                 VALUES ($1, $2)
@@ -57,7 +54,6 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
                 const pointsToAdd = response3.rows.map((item, index) => {
                     return pointsAwarded = <number>item.points;
                 })
-                // console.log(pointsToAdd)
                 //PUT request to add points to user
                 const queryText = `UPDATE "user"
                                     SET "points" = "points" + $1
@@ -67,31 +63,27 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
                 .then((response4) => {
                     const newPointsTotal: number = response4.rows[0].points;
                     const currentUserLevel: number = response4.rows[0].user_levels;
-                    // console.log(newPointsTotal);
-                    // console.log(currentUserLevel);
                     //Gets an level ids and qualifiers
                     const queryText = `SELECT * FROM "levels";`;
                     pool.query(queryText)
                     .then((response5) => {
-                        // console.log(response5.rows)
-                        const levelQualifiers = response5.rows.map((item, index) => {
+                        const levelQualifiers: any = response5.rows.map((item, index) => {
                             return <number>item.qualifier;
                         })
+                        //Creates a number-type variable of that equals the next level qualifier
+                        let nextLvl: number = parseInt(levelQualifiers[(currentUserLevel)])
+
                         const levelsId = response5.rows.map((item, index) => {
                             return <number>item.id;
                         })
-                        // console.log(levelQualifiers.length);
-                        // res.sendStatus(201);
-                        for(let i = 0; i < levelQualifiers.length; i++) {
-                            if(currentUserLevel >= levelQualifiers.length) {
-                                res.sendStatus(201);   
-                            } else if (newPointsTotal > levelQualifiers[i]  ){
-                                console.log([i]);
+                        if(currentUserLevel >= levelQualifiers.length) {
+                            res.sendStatus(201);   
+                            } else if (newPointsTotal >= nextLvl){
+
                                 console.log(newPointsTotal)
-                                console.log(levelQualifiers[i])
+                                console.log(levelQualifiers[(currentUserLevel)])
                                 console.log(currentUserLevel)
-                                console.log(levelsId[i])
-                                // console.log(levelQualifiers[i])
+
                                 const queryText = `UPDATE "user"
                                                     SET "user_levels" = "user_levels" + 1
                                                     WHERE "id" = $1;`;
@@ -106,8 +98,7 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
                             } else {
                                 res.sendStatus(201);
                             }
-                        }
-                    })
+                        })
                     .catch((err) => {
                         res.sendStatus(500);
                         console.log(err)
@@ -133,13 +124,6 @@ router.post('/post', rejectUnauthenticated, (req: Request, res: Response, next: 
         res.sendStatus(500);
     })
 });
-
-// } if (newPointsTotal >= levelQualifiers[i]  ){
-
-
-
-
-
 
 
 //PUT route to mark colors_user.id as deleted
