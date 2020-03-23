@@ -4,14 +4,16 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* postBlocks(action) {
     console.log('In postBlocks');
     const userId = action.payload.userId;
-    const colorsId= action.payload.colorsId;
+    const colorsId = action.payload.colorsId;
+    const achievementsId = action.payload.achievementsId;
     try {
         const response = yield axios({
             method: 'POST',
-            url: '/api/blocks/post',
+            url: '/api/blocksPost',
             data: {
                 userId,
-                colorsId
+                colorsId,
+                achievementsId,
             }
         })
         yield put({

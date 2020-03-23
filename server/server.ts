@@ -6,6 +6,7 @@ import userRouter from './routes/user.router';
 import colorsRouter from './routes/ColorsRoutes/colors.router';
 import colorsPostRouter from './routes/ColorsRoutes/colorsPost.router';
 import blocksRouter from './routes/BlocksRoutes/blocks.router';
+import blocksPostRouter from './routes/BlocksRoutes/blocksPost.router';
 
 
 require('dotenv').config();
@@ -28,6 +29,7 @@ app.use('/api/user', userRouter);
 app.use('/api/colors', colorsRouter);
 app.use('/api/colorsPost', colorsPostRouter);
 app.use('/api/blocks', blocksRouter);
+app.use('/api/blocksPost', blocksPostRouter);
 
 
 // Serve static files

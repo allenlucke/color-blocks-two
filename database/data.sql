@@ -48,6 +48,6 @@ VALUES (100),
 
 --preload some achievements
 INSERT INTO "achievements" ("achievement", "points")
-VALUES ('Add color by name', 10),
-        ('Add color by hex code', 20),
-        ('Add color by combination', 30);
+VALUES ('Add color by name', 20),
+        ('Add color by hex code', 30),
+        ('Add Block', 10);

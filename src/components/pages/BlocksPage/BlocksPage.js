@@ -62,7 +62,8 @@ class BlocksPage extends Component {
                 type: 'ADD_BLOCKS',       
                 payload: {
                     userId: this.props.user.id,
-                    colorsId: item.colorsId
+                    colorsId: item.colorsId,
+                    achievementsId: 3,
                 }
             })
         })      
