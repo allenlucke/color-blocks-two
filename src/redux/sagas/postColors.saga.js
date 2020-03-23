@@ -9,7 +9,7 @@ function* postColors(action) {
     try {
         const response = yield axios({
             method: 'POST',
-            url: '/api/colors/post',
+            url: '/api/colorsPost',
             data: action.payload
         })
         yield put({

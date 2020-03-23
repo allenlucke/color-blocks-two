@@ -4,6 +4,7 @@ import sessionMiddleware from './modules/session-middleware';
 import passport from './strategies/user.strategy';
 import userRouter from './routes/user.router';
 import colorsRouter from './routes/ColorsRoutes/colors.router';
+import colorsPostRouter from './routes/ColorsRoutes/colorsPost.router';
 import blocksRouter from './routes/BlocksRoutes/blocks.router';
 
 
@@ -25,6 +26,7 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/colors', colorsRouter);
+app.use('/api/colorsPost', colorsPostRouter);
 app.use('/api/blocks', blocksRouter);
 
 
