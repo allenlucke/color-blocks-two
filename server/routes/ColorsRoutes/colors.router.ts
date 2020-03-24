@@ -17,7 +17,7 @@ router.get('/:userId', rejectUnauthenticated, (req: Request, res: Response, next
         res.send(response.rows)
     })
     .catch((err) => {
-        console.log(`error getting tasks ${err}`)
+        console.log(`error getting colors ${err}`)
         res.sendStatus(500);
     })
 });

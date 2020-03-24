@@ -32,7 +32,7 @@ const Nav = (props) => {
         {props.store.user.id && (
           <>
             {props.store.user.securityLevel >= 10 && (
-              //Page only accesible to admin
+              //Page only accessible to admins
               <Link className="nav-link" to="/admin">
               Admin Page
               </Link>
