@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
-import LogOutButton from '../LogOutButton/LogOutButton';
+import mapStoreToProps from '../../../redux/mapStoreToProps';
+import LogOutButton from '../../LogOutButton/LogOutButton';
 
-import '../UserPage/UserPage.css'
+import './UserPage.css'
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace 

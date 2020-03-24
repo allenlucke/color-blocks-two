@@ -45,7 +45,7 @@ router.post('/', rejectUnauthenticated, (req: Request, res: Response, next: expr
                 .then((response4) => {
                     const newPointsTotal: number = response4.rows[0].points;
                     const currentUserLevel: number = response4.rows[0].user_levels;
-                    //Gets an level ids and qualifiers
+                    //Gets level ids and qualifiers
                     const queryText = `SELECT * FROM "levels";`;
                     pool.query(queryText)
                     .then((response5) => {
