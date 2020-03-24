@@ -1,27 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import LogOutButton from '../../LogOutButton/LogOutButton';
+// import LogOutButton from '../../LogOutButton/LogOutButton';
 
 import './UserPage.css'
 
-// Basic class component structure for React with default state
-// value setup. When making a new component be sure to replace 
-// the component name TemplateClass with the name for the new 
-// component.
+
 class UserPage extends Component {
     state = {
-        // heading: `Some heading`
+        userId: this.props.user.id,
+    }
+    componentDidMount() {
+        this.props.dispatch({
+            type: 'GET_POINTS',
+            payload: this.state.userId,
+        })
     }
     
     render() {
         return (
-            <div>
-                <h1 id="welcome">
+            <div className="container1">
+                <h1>
                     Welcome, { this.props.store.user.username }!
                 </h1>
-                {/* <LogOutButton className="log-in" /> */}
-                {/* <h2>{this.state.heading}</h2> */}
+
+                <h2>Your Current Level: </h2>
+                <h2>Your Current Points: </h2>
+                <h2>Points to next Level: </h2>
+                <h2>Blocks Added: </h2>
+                <h2>Colors Added By Name: </h2>
+                <h2>Colors Added By Hex Code: </h2>
+                <h2>Total Colors Added: </h2>
+                <h2></h2>
             </div>
         );
     }

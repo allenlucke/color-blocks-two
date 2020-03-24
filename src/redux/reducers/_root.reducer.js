@@ -4,6 +4,7 @@ import loginMode from './loginMode.reducer';
 import user from './user.reducer';
 import getColorsReducer from './getColors.reducer';
 import getBlocksReducer from './getBlocks.reducer';
+import getPointsReducer from './getPoints.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
   getColorsReducer,
-  getBlocksReducer
+  getBlocksReducer,
+  getPointsReducer,
 });
 
 export default rootReducer;

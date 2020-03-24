@@ -4,8 +4,8 @@ import {
   Redirect,
 } from 'react-router-dom'
 import {connect} from 'react-redux';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import RegisterPage from '../pages/RegisterPage/RegisterPage';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // A Custom Wrapper Component -- This will keep our code DRY.
