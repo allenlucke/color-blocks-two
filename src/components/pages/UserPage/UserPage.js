@@ -18,19 +18,29 @@ class UserPage extends Component {
     }
     
     render() {
+        const userData = this.props.store.getPointsReducer.map((item, index) => {
+            return(
+                <div key={index}>
+                    <h2>Your Current Level: {item.user_levels}</h2>
+                    <h2>Your Current Points: {item.points}</h2>
+                    <h2>Points to next Level: </h2>
+                    <h2>Blocks Added: {item.totalBlocks}</h2>
+                    <h2>Colors Added By Name: </h2>
+                    <h2>Colors Added By Hex Code: </h2>
+                    <h2>Total Colors Added: </h2>
+                </div>
+            )
+        })
         return (
             <div className="container1">
                 <h1>
                     Welcome, { this.props.store.user.username }!
                 </h1>
 
-                <h2>Your Current Level: </h2>
-                <h2>Your Current Points: </h2>
-                <h2>Points to next Level: </h2>
-                <h2>Blocks Added: </h2>
-                <h2>Colors Added By Name: </h2>
-                <h2>Colors Added By Hex Code: </h2>
-                <h2>Total Colors Added: </h2>
+                <div>
+                    {userData}
+                </div>
+                
                 <h2></h2>
             </div>
         );
