@@ -23,11 +23,11 @@ class UserPage extends Component {
                 <div key={index}>
                     <h2>Your Current Level: {item.user_levels}</h2>
                     <h2>Your Current Points: {item.points}</h2>
-                    <h2>Points to next Level: </h2>
+                    <h2>Points to next Level: {item.pointsNeeded}</h2>
                     <h2>Blocks Added: {item.totalBlocks}</h2>
                     <h2>Colors Added By Name: </h2>
                     <h2>Colors Added By Hex Code: </h2>
-                    <h2>Total Colors Added: </h2>
+                    <h2>Total Colors Added: {item.totalColors}</h2>
                 </div>
             )
         })
