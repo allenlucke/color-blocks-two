@@ -24,15 +24,22 @@ CREATE TABLE "user" (
     "securityLevel" int default 1 NOT NULL,
     "email" VARCHAR (80),
     "role" VARCHAR (80),
-    "user_levels" INT default 0,
+    "user_levels" INT default 1,
     "points" BIGINT default 0,
     "isActive" BOOLEAN default TRUE
+);
+
+CREATE TABLE "achievements" (
+    "id" SERIAL PRIMARY KEY, 
+    "achievement" VARCHAR (120) UNIQUE NOT NULL,
+    "points" INT default 0
 );
 
 CREATE TABLE "blocks" (
     "id" SERIAL PRIMARY KEY,
     "user_id" INT REFERENCES "user",
     "colors_id" BIGINT REFERENCES "colors",
+    "achievements_id" BIGINT  default 3 REFERENCES "achievements",
     "deleted" BOOLEAN default FALSE
 );
 
@@ -40,11 +47,8 @@ CREATE TABLE "colors_user" (
     "id" SERIAL PRIMARY KEY,
     "user_id" INT REFERENCES "user",
     "colors_id" BIGINT REFERENCES "colors",
+    "achievements_id" BIGINT REFERENCES "achievements",
     "deleted" BOOLEAN default FALSE
 );
 
-CREATE TABLE "achievements" (
-    "id" SERIAL PRIMARY KEY, 
-    "achievement" VARCHAR (120) UNIQUE NOT NULL,
-    "points" INT default 0
-)
+

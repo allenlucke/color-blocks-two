@@ -7,7 +7,7 @@ import rejectUnauthenticated from '../../modules/authentication-middleware';
 const router: express.Router = express.Router();
 
 //GET route for current points, level, and blocks added
-router.get('/:userId',  (req: Request, res: Response, next: express.NextFunction): void => {
+router.get('/:userId', rejectUnauthenticated, (req: Request, res: Response, next: express.NextFunction): void => {
     const userId: number | null = <number>parseInt(req.params.userId);
     const queryText: string = `SELECT "user".points AS "points", "user".user_levels AS "user_levels", 
                                 COUNT("blocks") AS "totalBlocks" FROM "user"
@@ -38,9 +38,9 @@ router.get('/:userId',  (req: Request, res: Response, next: express.NextFunction
                                 WHERE id = ($2 +1);`;
             pool.query(queryText, [currentPoints, userLvlId])
             .then((response3) => {
-                console.log(response1.rows[0])
-                console.log(response2.rows[0])
-                console.log(response3.rows[0])
+                // console.log(response1.rows[0])
+                // console.log(response2.rows[0])
+                // console.log(response3.rows[0])
                 const firstResponse: any = response1.rows[0];
                 const secondResponse: any = response2.rows[0];
                 const thirdResponse: any = response3.rows[0];
@@ -49,9 +49,6 @@ router.get('/:userId',  (req: Request, res: Response, next: express.NextFunction
                     ...firstResponse,
                     ...secondResponse,
                     ...thirdResponse,
-                    // ...response1.rows,
-                    // ...response2.rows,
-                    // ...response3.rows,
                 }]
                 console.log(userData)
                 res.send(userData)
