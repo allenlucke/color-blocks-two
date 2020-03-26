@@ -38,20 +38,47 @@ router.get('/:userId', rejectUnauthenticated, (req: Request, res: Response, next
                                 WHERE id = ($2 +1);`;
             pool.query(queryText, [currentPoints, userLvlId])
             .then((response3) => {
-                // console.log(response1.rows[0])
-                // console.log(response2.rows[0])
-                // console.log(response3.rows[0])
-                const firstResponse: any = response1.rows[0];
-                const secondResponse: any = response2.rows[0];
-                const thirdResponse: any = response3.rows[0];
+                //GET route for colorsAddedByName
+                const queryText = `SELECT COUNT("achievements_id") AS "colorsAddedByName" FROM "colors_user"
+                                    WHERE "user_id" = $1 AND "achievements_id" = 1;`;
+                pool.query(queryText, [userId])
+                .then((response4) => {
+                    //GET route colorsAddedByHex
+                    const queryText = `SELECT COUNT("achievements_id") AS "colorsAddedByHex" FROM "colors_user"
+                                        WHERE "user_id" = $1 AND "achievements_id" = 2;`;
+                    pool.query(queryText, [userId])
+                    .then((response5) => {
+                        console.log(response1.rows[0])
+                        console.log(response2.rows[0])
+                        console.log(response3.rows[0])
+                        console.log(response4.rows[0])
+                        console.log(response5.rows[0])
 
-                const userData: Array<any>= [{
-                    ...firstResponse,
-                    ...secondResponse,
-                    ...thirdResponse,
-                }]
-                console.log(userData)
-                res.send(userData)
+                        const firstResponse: any = response1.rows[0];
+                        const secondResponse: any = response2.rows[0];
+                        const thirdResponse: any = response3.rows[0];
+                        const fourthResponse: any = response4.rows[0];
+                        const fifthResponse: any = response5.rows[0];
+
+                        const userData: Array<any>= [{
+                            ...firstResponse,
+                            ...secondResponse,
+                            ...thirdResponse,
+                            ...fourthResponse,
+                            ...fifthResponse,
+                        }]
+                        console.log(userData)
+                        res.send(userData)
+                        })
+                        .catch((err) => {
+                            console.log(`error getting count of colors added by name ${err}`)
+                            res.sendStatus(500);
+                        })
+                    })
+                    .catch((err) => {
+                        console.log(`error getting colors added by hex code ${err}`)
+                        res.sendStatus(500);
+                }) 
             })
             .catch((err) => {
                 console.log(`error getting points to next level ${err}`)
