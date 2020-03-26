@@ -13,9 +13,9 @@ router.post('/', rejectUnauthenticated, (req: Request, res: Response, next: expr
     const achievementsId: number | null = <number>req.body.achievementsId;
     let pointsAwarded: number | null;
     // const pointsId: number | null = <number>req.body.pointsId;
-    const queryText: string = `INSERT INTO "blocks" ("user_id", "colors_id")
-                                VALUES ($1, $2);`;
-    pool.query(queryText, [userId, colorsId])
+    const queryText: string = `INSERT INTO "blocks" ("user_id", "colors_id", "achievements_id")
+                                VALUES ($1, $2, $3);`;
+    pool.query(queryText, [userId, colorsId, achievementsId])
     .then((response1) => {
         // res.send(response1.rows)
         //GET request for achievements points

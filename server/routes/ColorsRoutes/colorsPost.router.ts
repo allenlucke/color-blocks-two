@@ -24,9 +24,9 @@ router.post('/', rejectUnauthenticated, (req: Request, res: Response, next: expr
             return colors_id = <number>item.id;
         })
         //Posts to the colors_users table uses returned id to associate color with user
-        const queryText: string = `INSERT INTO "colors_user" ("user_id", "colors_id")
-                                    VALUES ($1, $2);`;
-        pool.query(queryText, [userId, ...colorsId])
+        const queryText: string = `INSERT INTO "colors_user" ("user_id", "colors_id", "achievements_id")
+                                    VALUES ($1, $2, $3);`;
+        pool.query(queryText, [userId, ...colorsId, achievementsId])
         .then(response2 => {
             //Get request for achievements points
             const queryText = `SELECT "points" FROM "achievements"
