@@ -17,16 +17,16 @@ router.get('/:userId',  (req: Request, res: Response, next: express.NextFunction
                                 GROUP BY "user".points, "user".user_levels;`;
     pool.query(queryText, [userId])
     .then((response1) => {
-        console.log(response1.rows[0])
+        // console.log(response1.rows[0])
         const pointsArray: any = response1.rows.map((item, index) => {
             return <number>item
         })
-        console.log(pointsArray[0].points)
-        console.log(pointsArray[0].user_levels)
+        // console.log(pointsArray[0].points)
+        // console.log(pointsArray[0].user_levels)
         const currentPoints: number = parseInt(pointsArray[0].points)
         const userLvlId: number = parseInt(pointsArray[0].user_levels)
-        console.log(userLvlId)
-        console.log(currentPoints)
+        // console.log(userLvlId)
+        // console.log(currentPoints)
         //GET route for colors added
         const queryText = `SELECT COUNT("colors_user") AS "totalColors" FROM "colors_user"
                             JOIN "user" ON "colors_user".user_id = "user".id
@@ -38,15 +38,21 @@ router.get('/:userId',  (req: Request, res: Response, next: express.NextFunction
                                 WHERE id = ($2 +1);`;
             pool.query(queryText, [currentPoints, userLvlId])
             .then((response3) => {
-                // console.log(response1.rows)
-                // console.log(response2.rows)
-                // console.log(response3.rows)
+                console.log(response1.rows[0])
+                console.log(response2.rows[0])
+                console.log(response3.rows[0])
+                const firstResponse: any = response1.rows[0];
+                const secondResponse: any = response2.rows[0];
+                const thirdResponse: any = response3.rows[0];
 
-                const userData: Array<any>= [
-                    ...response1.rows,
-                    ...response2.rows,
-                    ...response3.rows,
-                ]
+                const userData: Array<any>= [{
+                    ...firstResponse,
+                    ...secondResponse,
+                    ...thirdResponse,
+                    // ...response1.rows,
+                    // ...response2.rows,
+                    // ...response3.rows,
+                }]
                 console.log(userData)
                 res.send(userData)
             })
