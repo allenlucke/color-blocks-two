@@ -25,8 +25,8 @@ class UserPage extends Component {
                     <h2>Your Current Points: {item.points}</h2>
                     <h2>Points to next Level: {item.pointsNeeded}</h2>
                     <h2>Blocks Added: {item.totalBlocks}</h2>
-                    <h2>Colors Added By Name: </h2>
-                    <h2>Colors Added By Hex Code: </h2>
+                    <h2>Colors Added By Name: {item.colorsAddedByName}</h2>
+                    <h2>Colors Added By Hex Code: {item.colorsAddedByHex}</h2>
                     <h2>Total Colors Added: {item.totalColors}</h2>
                 </div>
             )
