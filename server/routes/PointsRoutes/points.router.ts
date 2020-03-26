@@ -17,11 +17,15 @@ router.get('/:userId',  (req: Request, res: Response, next: express.NextFunction
                                 GROUP BY "user".points, "user".user_levels;`;
     pool.query(queryText, [userId])
     .then((response1) => {
+        console.log(response1.rows[0])
         const pointsArray: any = response1.rows.map((item, index) => {
-            return <number>item.points
+            return <number>item
         })
-        // console.log(pointsArray[0])
-        const currentPoints: number = parseInt(pointsArray[0])
+        console.log(pointsArray[0].points)
+        console.log(pointsArray[0].user_levels)
+        const currentPoints: number = parseInt(pointsArray[0].points)
+        const userLvlId: number = parseInt(pointsArray[0].user_levels)
+        console.log(userLvlId)
         console.log(currentPoints)
         //GET route for colors added
         const queryText = `SELECT COUNT("colors_user") AS "totalColors" FROM "colors_user"
@@ -31,8 +35,8 @@ router.get('/:userId',  (req: Request, res: Response, next: express.NextFunction
         .then((response2) => {
             //GET route for points to next level
             const queryText = `SELECT SUM("qualifier" - $1) AS "pointsNeeded" FROM "levels"
-                                WHERE id = $2;`;
-            pool.query(queryText, [currentPoints, userId])
+                                WHERE id = ($2 +1);`;
+            pool.query(queryText, [currentPoints, userLvlId])
             .then((response3) => {
                 // console.log(response1.rows)
                 // console.log(response2.rows)
