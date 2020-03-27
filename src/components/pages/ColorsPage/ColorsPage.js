@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import chroma from 'chroma-js';
 import AddByColorModal from './AddByColorModal';
-import AddByHexModal from './AddByHexModal'
+import AddByHexModal from './AddByHexModal';
+import SearchColorsModal from './SearchColorsModal';
 
 //Material UI
 import Table from '@material-ui/core/Table';
@@ -87,6 +88,7 @@ class ColorsPage extends Component {
                     <ButtonGroup>
                         <AddByColorModal />
                         <AddByHexModal />
+                        <SearchColorsModal />
                     </ButtonGroup>
                     </div>
                 <h2>Color Settings</h2>

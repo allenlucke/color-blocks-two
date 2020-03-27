@@ -5,6 +5,7 @@ import user from './user.reducer';
 import getColorsReducer from './getColors.reducer';
 import getBlocksReducer from './getBlocks.reducer';
 import getPointsReducer from './getPoints.reducer';
+import searchColorsReducer from './searchColors.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   getColorsReducer,
   getBlocksReducer,
   getPointsReducer,
+  searchColorsReducer,
 });
 
 export default rootReducer;
