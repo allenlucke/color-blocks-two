@@ -7,7 +7,7 @@ const router: express.Router = express.Router();
 
 router.post('/', rejectUnauthenticated, (req: Request, res: Response, next: express.NextFunction): void => {
     const userId: number | null = <number>parseInt(req.body.userId);
-    const label: string | null = <string>req.body.label;
+    const label: string | null = <string>req.body.label.toLowerCase();
     const hex_code: string | null = <string>req.body.hex_code;
     let colors_id: number | null;
     const achievementsId: number | null = <number>req.body.achievementsId;

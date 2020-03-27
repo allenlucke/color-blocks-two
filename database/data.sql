@@ -6,10 +6,10 @@ VALUES
 
 -- pre-load some colors
 INSERT INTO "colors" ("label", "hex_code")
-VALUES ('Red', '#ff0000'),
-    ('Yellow', '#ffff00'),
-    ('Blue', '#0000ff'),
-    ('Green', '#00ff00');
+VALUES ('red', '#ff0000'),
+    ('yellow', '#ffff00'),
+    ('blue', '#0000ff'),
+    ('green', '#00ff00');
         
 --preload some levels
 INSERT INTO "levels" ("qualifier")
