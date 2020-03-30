@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import SearchResultsModal from './SearchResultsModal';
+import { Route, withRouter } from 'react-router-dom';
+// import ColorsSearchResultsPage from './SearchResultsPage';
+// import { browserHistory } from 'history'
 
 //Material UI
 import TextField from '@material-ui/core/TextField';
@@ -30,6 +32,7 @@ class SearchColorsModal extends Component {
         this.setState({
             setOpen: false,
         })
+        // this.props.history.push('/colorsSearchResults');
     }
     handleInputChange = (event, inputKey) => {
         this.setState({
@@ -61,6 +64,7 @@ class SearchColorsModal extends Component {
                 }
             })
         })
+         this.props.history.push('/colorsSearchResults');
     } 
     render() {
         return (
@@ -92,6 +96,7 @@ class SearchColorsModal extends Component {
                                         variant='contained'
                                         color='primary'
                                         style={{ marginLeft: '20px', height: '55px', flex: '1' }}
+                                        
                                     >Search For Color</Button>
                                 </form>
                             </div>
@@ -102,4 +107,4 @@ class SearchColorsModal extends Component {
     }
 }
 
-export default connect(mapStoreToProps)(SearchColorsModal);
+export default withRouter(connect(mapStoreToProps)(SearchColorsModal))

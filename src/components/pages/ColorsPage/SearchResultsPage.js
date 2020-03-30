@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
+import AddBySearchColors from '../ColorsPage/AddBySearchColorsModal';
 
 
 //Material UI
@@ -21,7 +22,7 @@ import Swal from 'sweetalert2';
 import './ColorsPage.css';
 
 
-class SearchResultsModal extends Component {
+class ColorsSearchResultsPage extends Component {
 
     openModal = (event) => {
         this.setState({
@@ -44,11 +45,12 @@ class SearchResultsModal extends Component {
                         <TableCell style={{ color: 'whitesmoke', fontSize:'18px'}}>{item.label}</TableCell>
                         <TableCell style={{ color: 'whitesmoke', fontSize: '18px' }}>{item.hex_code}</TableCell>
                         <TableCell style= {{backgroundColor: el }} ></TableCell>
-                        <TableCell style={{width: '10rem'}}><Button
+                        <TableCell></TableCell>
+                        {/* <TableCell style={{width: '10rem'}}><Button
                             variant='contained'
                             color='secondary'
                             // onClick={(event) => this.deleteColor(event, item.id)}
-                        >Add Color</Button></TableCell>
+                        >Add Color</Button></TableCell> */}
                     </TableRow>
                 </TableBody>
             )
@@ -56,19 +58,10 @@ class SearchResultsModal extends Component {
 
         return (
             <div className="container">
-                <div className="modal-button">
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.openModal}
-                    >
-                        Search for Color
-                    </Button>
-                </div>
                 <Table>
                     <TableHead>
                         <TableRow>
-                        <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Color Name</TableCell>
+                            <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Color Name</TableCell>
                             <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Hex Code</TableCell>
                             <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Color Image</TableCell>
                             <TableCell style={{ color: 'whitesmoke', fontSize: '24px' }}>Add Color</TableCell>
@@ -82,4 +75,4 @@ class SearchResultsModal extends Component {
     }
 }
 
-export default connect(mapStoreToProps)(SearchResultsModal);
+export default connect(mapStoreToProps)(ColorsSearchResultsPage);

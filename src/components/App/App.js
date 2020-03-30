@@ -22,6 +22,8 @@ import ColorsPage from '../pages/ColorsPage/ColorsPage';
 import BlocksPage from '../pages/BlocksPage/BlocksPage';
 import AdminPage from '../Admin/AdminPage';
 import UserPage from '../pages/UserPage/UserPage';
+import ColorsSearchResultsPage from '../pages/ColorsPage/SearchResultsPage';
+
 
 import './App.css';
 
@@ -75,6 +77,11 @@ class App extends Component {
                 exact
                 path="/colors"
                 component={ColorsPage}
+              />
+              <ProtectedRoute
+                exact
+                path="/colorsSearchResults"
+                component={ColorsSearchResultsPage}
               />
               <ProtectedRoute
                 exact
