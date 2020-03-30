@@ -6,7 +6,7 @@ import rejectUnauthenticated from '../../modules/authentication-middleware';
 const router: express.Router = express.Router();
 
 //GET Route for color names similar to string
-router.get('/:colorName',  (req: Request, res: Response, next: express.NextFunction): void => {
+router.get('/:colorName', rejectUnauthenticated, (req: Request, res: Response, next: express.NextFunction): void => {
     const colorName: string | null = <string>req.params.colorName.toLowerCase();
 
     const queryText: string = `SELECT * FROM "colors"

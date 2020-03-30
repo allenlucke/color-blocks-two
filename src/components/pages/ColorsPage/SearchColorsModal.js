@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-// import chroma from 'chroma-js';
+import SearchResultsModal from './SearchResultsModal';
 
 //Material UI
 import TextField from '@material-ui/core/TextField';
@@ -53,6 +53,11 @@ class SearchColorsModal extends Component {
                 type: 'SEARCH_COLORS',
                 payload: {
                     label: this.state.colorToSearch.label,
+                }
+            })
+            this.setState({
+                colorToSearch: {
+                    label: '',
                 }
             })
         })

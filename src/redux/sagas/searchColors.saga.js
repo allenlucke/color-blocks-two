@@ -3,7 +3,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* searchColors(action) {
     console.log('In searchColors');
-    const label = action.payload
+    console.log(action.payload)
+    const label = action.payload.label
     try {
         const response = yield axios({
             method: 'GET',
