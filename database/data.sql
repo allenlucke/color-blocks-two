@@ -30,7 +30,8 @@ VALUES  (0),
 INSERT INTO "achievements" ("achievement", "points")
 VALUES ('Add color by name', 20),
         ('Add color by hex code', 30),
-        ('Add Block', 10);
+        ('Add Block', 10),
+        ('Add color by search', 10);
 
 -- pre-load some blocks for initial render
 INSERT INTO "blocks" ("colors_id", "user_id", "achievements_id")

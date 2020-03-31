@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import chroma from 'chroma-js';
+// import chroma from 'chroma-js';
+import SearchResultsPage from './SearchResultsPage';
 
 //Material UI
 import TextField from '@material-ui/core/TextField';
@@ -12,13 +13,14 @@ import Swal from 'sweetalert2';
 
 import './ColorsPage.css';
 
+
 class AddBySearchColorsModal extends Component {
     state = {
         setOpen: false,
         newColor: {
             userId: this.props.user.id,
             label: '',
-            hex_code: '',
+            hex_code: this.props.colorItem.hex_code,
             achievementsId: 4,
         }
     };
@@ -35,10 +37,12 @@ class AddBySearchColorsModal extends Component {
         })
     }
     handleInputChange = (event, inputKey) => {
+        console.log(this.props.colorItem.hex_code)
         this.setState({
             newColor: {
                 ...this.state.newColor,
-                [inputKey]: event.target.value
+                [inputKey]: event.target.value,
+                hex_code: this.props.colorItem.hex_code
             }
         });
     }
@@ -48,16 +52,19 @@ class AddBySearchColorsModal extends Component {
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: `Success, ${this.state.newColor.hex_code} has been added!`,
+            title: `Success, ${this.state.newColor.label} has been added!`,
             showConfirmButton: false,
             timer: 1500
         }).then(() => {
+            // this.setState({
+            //     hex_code: this.props.colorItem.hex_code
+            // })
             this.props.dispatch({
                 type: 'ADD_COLORS',
                 payload: {
                     userId: this.state.newColor.userId,
                     label: this.state.newColor.label,
-                    hex_code: chroma(this.state.newColor.hex_code).hex(),
+                    hex_code: this.state.newColor.hex_code,
                     achievementsId: this.state.newColor.achievementsId,
                 } })
                 this.setState({
@@ -65,16 +72,17 @@ class AddBySearchColorsModal extends Component {
                         userId: this.state.newColor.userId,
                         label: '',
                         hex_code: '',
-                        achievementsId: 2,
+                        achievementsId: 4,
                     }
                 })
         })
     }
     render() {
         return (
-            <div className="container">
+            <div >
                 <div className="modal-button">
                     <Button
+                        // style={{padding: '0px'}}
                         variant="contained"
                         color="primary"
                         onClick={this.openModal}

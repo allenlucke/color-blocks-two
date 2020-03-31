@@ -67,6 +67,7 @@ class SearchColorsModal extends Component {
          this.props.history.push('/colorsSearchResults');
     } 
     render() {
+        // const modalColorData = this.props.store
         return (
             <div className="container">
                 <div className="modal-button">
