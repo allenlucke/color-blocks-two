@@ -27,6 +27,7 @@ class UserPage extends Component {
                     <h2>Blocks Added: {item.totalBlocks}</h2>
                     <h2>Colors Added By Name: {item.colorsAddedByName}</h2>
                     <h2>Colors Added By Hex Code: {item.colorsAddedByHex}</h2>
+                    <h2>Colors Added By Search: {item.colorsAddedBySearch}</h2>
                     <h2>Total Colors Added: {item.totalColors}</h2>
                 </div>
             )
