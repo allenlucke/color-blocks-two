@@ -9,7 +9,7 @@ const router: express.Router = express.Router();
 router.get('/:colorName', rejectUnauthenticated, (req: Request, res: Response, next: express.NextFunction): void => {
     const colorName: string | null = <string>req.params.colorName.toLowerCase();
 
-    const queryText: string = `SELECT * FROM "colors"
+    const queryText: string = `SELECT DISTINCT ON ("hex_code", "label") * FROM "colors"
                                 WHERE to_tsvector("label") @@ to_tsquery('${colorName}')
                                 OR "label" LIKE '%${colorName}%'
                                 OR "label" LIKE '${colorName}%'
@@ -27,3 +27,12 @@ router.get('/:colorName', rejectUnauthenticated, (req: Request, res: Response, n
     });
 });
 export default router;
+
+// const queryText: string = `SELECT * FROM "colors"
+//                                 WHERE to_tsvector("label") @@ to_tsquery('${colorName}')
+//                                 OR "label" LIKE '%${colorName}%'
+//                                 OR "label" LIKE '${colorName}%'
+//                                 OR "label" LIKE '%${colorName}'
+//                                 OR "label" LIKE '_${colorName}_'
+//                                 OR "label" LIKE '${colorName}_'
+//                                 OR "label" LIKE '_${colorName}';`;
